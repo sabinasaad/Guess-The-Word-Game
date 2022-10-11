@@ -32,15 +32,28 @@ public class Words {
     public String toString(){
         StringBuilder text = new StringBuilder();
         for (char letter : letters) {
-            if (letter == '\u0000') {
-                text.append('-');
-            } else {
-                text.append(letter);
-            }
+            text.append(letter == '\u0000' ? '-' : letter);
             text.append(' ');
         }
 
         return text.toString();
     }
 
+    public boolean isGuessedRight(){
+
+        for (char letter : letters) {
+            if (letter == '\u0000'){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void guess(char letter) {
+
+        for (int i = 0; i < selectedWord.length(); i++){
+            if (letter == selectedWord.charAt(i)) {
+                letters[i] = letter;
+            }
+        }
+    }
 }
